@@ -12,7 +12,7 @@ const Filters: FC = () => {
   const [color, setColor] = useState<string>('all');
   const [hasFriends, setHasFriends] = useState<string>('');
 
-  const { setGroups, setIsLoading } = useContext(GroupsContext);
+  const { setGroups, setIsLoading, setError } = useContext(GroupsContext);
 
   useEffect(() => {
     getGroups({ type, color, hasFriends }).then((data) => setAllGroups(data));
@@ -20,10 +20,16 @@ const Filters: FC = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getGroups({ type, color, hasFriends }).then((data) => {
-      setGroups(data);
-      setIsLoading(false);
-    });
+    getGroups({ type, color, hasFriends })
+      .then((data) => {
+        setGroups(data);
+        setIsLoading(false);
+        setError('');
+      })
+      .catch((error: Error) => {
+        setIsLoading(false);
+        setError(error.message);
+      });
   }, [type, color, hasFriends]);
 
   if (!allGroups) return;
