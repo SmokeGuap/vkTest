@@ -1,7 +1,7 @@
 import { CustomSelectOptionInterface, SelectProps } from '@vkontakte/vkui';
 import { Dispatch, SetStateAction } from 'react';
 
-interface GetGroupsResponse {
+export interface GetGroupsResponse {
   result: 1 | 0;
   data?: Group[];
 }

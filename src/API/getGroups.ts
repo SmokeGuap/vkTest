@@ -1,4 +1,4 @@
-import { GetGroupsParams } from 'src/types';
+import { GetGroupsParams, GetGroupsResponse } from 'src/types';
 
 import groupsJSON from 'src/groups.json';
 
@@ -7,7 +7,7 @@ const getGroups = async ({ type, color, hasFriends }: GetGroupsParams) => {
     const promise = new Promise((resolve) => setTimeout(resolve, 1000));
 
     const res = await promise
-      .then(() => {
+      .then((): GetGroupsResponse => {
         return {
           result: 1,
           data: groupsJSON
