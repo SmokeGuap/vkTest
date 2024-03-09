@@ -43,7 +43,7 @@ const getGroups = async ({ type, color, hasFriends }: GetGroupsParams) => {
     if (res.result == 0) throw new Error(`Result is 0`);
     if (!res.data) throw new Error(`No data`);
 
-    return res;
+    return res.data;
   } catch (error) {
     if (error instanceof SyntaxError) {
       throw new Error(`There was a SyntaxError: ${error}`);

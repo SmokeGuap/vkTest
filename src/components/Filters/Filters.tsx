@@ -12,16 +12,18 @@ const Filters: FC = () => {
   const [color, setColor] = useState<string>('all');
   const [hasFriends, setHasFriends] = useState<string>('');
 
-  const { setGroups } = useContext(GroupsContext);
+  const { setGroups, setIsLoading } = useContext(GroupsContext);
 
   useEffect(() => {
-    getGroups({ type, color, hasFriends }).then(({ data }) =>
-      setAllGroups(data)
-    );
+    getGroups({ type, color, hasFriends }).then((data) => setAllGroups(data));
   }, []);
 
   useEffect(() => {
-    getGroups({ type, color, hasFriends }).then(({ data }) => setGroups(data));
+    setIsLoading(true);
+    getGroups({ type, color, hasFriends }).then((data) => {
+      setGroups(data);
+      setIsLoading(false);
+    });
   }, [type, color, hasFriends]);
 
   if (!allGroups) return;
