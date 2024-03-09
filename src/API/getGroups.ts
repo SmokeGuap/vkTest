@@ -23,6 +23,8 @@ const getGroups = async ({ type, color, hasFriends }: GetGroupsParams) => {
                 ? true
                 : color === group.avatar_color
                 ? true
+                : color == '' && !group.avatar_color
+                ? true
                 : false;
             })
             .filter((group) => {

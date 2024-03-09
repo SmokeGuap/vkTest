@@ -5,6 +5,7 @@ import { getGroups } from 'src/API';
 import { Filter } from 'src/components';
 import { GroupsContext } from 'src/context/GroupsContext';
 import { Group as IGroup } from 'src/types';
+import { translateColor } from 'src/utils';
 
 const Filters: FC = () => {
   const [allGroups, setAllGroups] = useState<IGroup[]>();
@@ -55,17 +56,25 @@ const Filters: FC = () => {
         changeValue={setType}
       />
       <Filter
-        options={allGroups
-          .filter(
-            (elem, index, arr) =>
-              arr.findIndex((e) => e.avatar_color === elem.avatar_color) ===
-              index
-          )
-          .map((group) => ({
-            label: group.avatar_color ? group.avatar_color : 'все цвета',
-            value: group.avatar_color ? group.avatar_color : 'all',
-          }))
-          .sort((a, b) => a.label.localeCompare(b.label))}
+        options={[
+          {
+            label: 'все цвета',
+            value: 'all',
+          },
+          ...allGroups
+            .filter(
+              (elem, index, arr) =>
+                arr.findIndex((e) => e.avatar_color === elem.avatar_color) ===
+                index
+            )
+            .map((group) => ({
+              label: group.avatar_color
+                ? translateColor(group.avatar_color)
+                : 'без цвета',
+              value: group.avatar_color ? group.avatar_color : '',
+            }))
+            .sort((a, b) => a.label.localeCompare(b.label)),
+        ]}
         value={color}
         changeValue={setColor}
       />
