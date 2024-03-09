@@ -27,6 +27,7 @@ export interface GetGroupsParams {
 }
 
 export interface FilterProps extends SelectProps<CustomSelectOptionInterface> {
+  title: string;
   value: string;
   changeValue: Dispatch<SetStateAction<string>>;
 }

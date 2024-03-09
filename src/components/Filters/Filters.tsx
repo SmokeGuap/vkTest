@@ -38,6 +38,7 @@ const Filters: FC = () => {
   return (
     <Group header={<Header mode='secondary'>Фильтры</Header>}>
       <Filter
+        title='Тип сообщества'
         options={[
           {
             label: 'любое',
@@ -56,6 +57,7 @@ const Filters: FC = () => {
         changeValue={setType}
       />
       <Filter
+        title='Цвет сообщества'
         options={[
           {
             label: 'все цвета',
@@ -79,17 +81,18 @@ const Filters: FC = () => {
         changeValue={setColor}
       />
       <Filter
+        title='По количеству друзей'
         options={[
           {
             label: 'все',
             value: '',
           },
           {
-            label: 'только те, на которые подписаны друзья',
+            label: 'сообщества, на которые подписаны друзья',
             value: 'yes',
           },
           {
-            label: 'только те, на которые не подписаны друзья',
+            label: 'сообщества, на которые не подписаны друзья',
             value: 'no',
           },
         ]}

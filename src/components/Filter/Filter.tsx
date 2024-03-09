@@ -4,12 +4,12 @@ import { CustomSelect, FormItem } from '@vkontakte/vkui';
 import { FilterProps } from 'src/types';
 
 const Filter: FC<FilterProps> = (props) => {
-  const { value, changeValue, options, ...rest } = props;
+  const { title, value, changeValue, options, ...rest } = props;
 
   const id = useId();
 
   return (
-    <FormItem htmlFor={id} top='Тип сообщества'>
+    <FormItem htmlFor={id} top={title}>
       <CustomSelect
         {...rest}
         onChange={(e) => changeValue(e.target.value)}
